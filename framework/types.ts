@@ -8,7 +8,7 @@ import {
 } from "./graphql";
 
 export interface Category extends ProductCategory {
-  childs?: CategoryType[];
+  childs?: ProductCategory[];
 }
 
 export interface Header extends HcmsHeader {}

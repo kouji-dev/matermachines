@@ -1,12 +1,19 @@
 import Image from "next/image";
 import logo from "@assets/logo.jpg";
 import { Link } from "..";
+import { FC } from "react";
+import { Header } from "@framework/types";
 
-const Logo = ({ className = "", header }) => {
+interface Props {
+  header: Header;
+  className?: string;
+}
+
+const Logo: FC<Props> = ({ className = "", header }) => {
   return (
     <Link href="/">
       <Image
-        alt={header?.siteTitle}
+        alt={header?.siteTitle || ""}
         src={logo}
         layout="fixed"
         width={50}

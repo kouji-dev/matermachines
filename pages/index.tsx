@@ -38,7 +38,7 @@ const Home: PageComponent<Props> = ({ pageProps: { products } }) => {
           <span className={s.link}>See All</span>
         </Link>
       </div>
-      <Products products={products} />
+      <Products products={products || []} />
     </div>
   );
 };

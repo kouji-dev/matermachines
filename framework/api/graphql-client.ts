@@ -1,11 +1,7 @@
-import fetch from "node-fetch";
-
 import {
   ApolloClient,
   ApolloLink,
   InMemoryCache,
-  from,
-  HttpLink,
   createHttpLink,
 } from "@apollo/client";
 import {
@@ -80,7 +76,6 @@ export const GraphQLClient = new ApolloClient({
     afterware.concat(
       createHttpLink({
         uri: `${WOOCOMMERCE_GRAPHQL_API}`,
-        fetch: fetch,
       })
     )
   ),

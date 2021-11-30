@@ -10,12 +10,12 @@ export type ErrorProps = {
 } & (
   | { message: string; errors?: never }
   | { message?: never; errors: ErrorData[] }
-  | { message?: never; errors: GraphQLError[] }
+  | { message?: never; errors: readonly GraphQLError[] | undefined }
 );
 
 export class CommerceError extends Error {
   code?: string;
-  errors: ErrorData[];
+  errors: ErrorData[] | readonly GraphQLError[] | undefined;
 
   constructor({ message, code, errors }: ErrorProps) {
     const error: ErrorData = message
@@ -38,11 +38,11 @@ export class ValidationError extends CommerceError {
 }
 
 export class FetcherError extends CommerceError {
-  status: number;
+  status: number | string;
 
   constructor(
     options: {
-      status: number;
+      status: number | string;
     } & ErrorProps
   ) {
     super(options);

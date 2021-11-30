@@ -5,12 +5,11 @@ export enum ActionTypes {
 
 type Action = { type: ActionTypes };
 
-export interface OpenModalAction extends Action {
-  type: ActionTypes.OPEN_MODAL;
+export class OpenModalAction implements Action {
+  type = ActionTypes.OPEN_MODAL;
 }
 
-export interface CloseModalAction extends Action {
-  type: ActionTypes.CLOSE_MODAL;
+export class CloseModalAction implements Action {
+  type = ActionTypes.CLOSE_MODAL;
 }
-
 export type Actions = OpenModalAction | CloseModalAction;

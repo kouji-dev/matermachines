@@ -1,3 +1,4 @@
+import { stat } from "fs";
 import { createContext, FC, useCallback, useContext, useReducer } from "react";
 import { OpenModalAction, Actions, ActionTypes } from "./actions";
 
@@ -37,10 +38,19 @@ function reducer(state: UIContextType, action: Actions): UIContextType {
   }
 }
 
-const UIProvider: FC = () => {
+const UIProvider: FC<{}> = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, InitialUI);
 
-  const openModal = useCallback(() => dispatch(OpenModalAction), [dispatch]);
+  const openModal = useCallback(
+    () => dispatch(new OpenModalAction()),
+    [dispatch]
+  );
+
+  return (
+    <UIContext.Provider value={{ ...state, openModal }}>
+      {children}
+    </UIContext.Provider>
+  );
 };
 
 export const useUI = () => {
