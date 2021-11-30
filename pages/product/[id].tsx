@@ -1,5 +1,4 @@
-import { Layout } from "@components/common";
-import { Product } from "@components/common/Products";
+import { Layout, Product } from "@components/common";
 import api from "@framework/api";
 import { Category, Header, Product as ProductType } from "@framework/types";
 import { PageComponent, PageProps } from "@utils/common-types";
@@ -20,12 +19,18 @@ interface Params extends ParsedUrlQuery {
 const ProductPage: PageComponent<Props> = ({ product }) => {
   const router = useRouter();
 
+  if (router.isFallback) {
+    return <div>Loading</div>;
+  }
+
   return (
     <div className={s.root}>
       <Product product={product} />
     </div>
   );
 };
+
+ProductPage.displayName = "ProductPage";
 
 ProductPage.Layout = Layout;
 
@@ -49,6 +54,7 @@ export const getStaticProps: GetStaticProps<Props, Params> = async (
       },
       product,
     },
+    revalidate: 1,
   };
 };
 
@@ -61,7 +67,7 @@ export const getStaticPaths: GetStaticPaths<Params> = async () => {
 
   return {
     paths,
-    fallback: true,
+    fallback: false,
   };
 };
 

@@ -7,7 +7,7 @@ import { FC, Fragment } from "react";
 import s from "./Search.module.css";
 
 interface Props {
-  categories: Category[];
+  categories: Category[] | null;
 }
 
 export const Search: FC<Props> = ({ categories }) => {
@@ -30,7 +30,7 @@ export const Search: FC<Props> = ({ categories }) => {
 };
 
 interface CategoryUIProps {
-  categories: Category[];
+  categories: Category[] | null;
 }
 
 const CategoryUI: FC<CategoryUIProps> = ({ categories }) => {
@@ -62,7 +62,7 @@ const CategoryUI: FC<CategoryUIProps> = ({ categories }) => {
             <Popover.Panel className="absolute z-10 w-screen max-w-sm px-4 mt-3 transform left-1/2 sm:px-0 lg:max-w-3xl">
               <div className="overflow-hidden rounded-lg shadow-lg ring-1 ring-black ring-opacity-5">
                 <div className="relative grid gap-8 bg-white p-7 grid-cols-2">
-                  {categories.map((category) => (
+                  {categories?.map((category) => (
                     <div key={category.id}>
                       <Link href={`category/${category?.slug}`}>
                         <span className="text-md font-bold">

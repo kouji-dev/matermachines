@@ -5,7 +5,7 @@ import { FC } from "react";
 import { Header } from "@framework/types";
 
 interface Props {
-  header: Header;
+  header: Header | null;
   className?: string;
 }
 

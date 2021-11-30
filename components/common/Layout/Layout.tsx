@@ -9,13 +9,10 @@ interface Props {
   pageProps: PageProps;
 }
 
-export const Layout: FC<Props> = ({
-  children,
-  pageProps: { categories, header },
-}) => {
+export const Layout: FC<Props> = ({ children, pageProps }) => {
   return (
     <div className={cn(s.root)}>
-      <Navbar categories={categories} header={header} />
+      <Navbar categories={pageProps?.categories} header={pageProps?.header} />
       <main className="fit">{children}</main>
     </div>
   );
