@@ -1,0 +1,17 @@
+.root {
+  @apply sticky top-0 bg-primary z-40 transition-all duration-150;
+  min-height: 74px;
+}
+
+.navContainer {
+  @apply m-auto py-4 px-6 flex justify-between border-b;
+}
+
+.toolbar {
+  @apply flex items-center mx-14 space-x-4 text-gray-600;
+}
+
+.subHeader {
+  @apply flex justify-center items-center
+  border-b px-3.5;
+}

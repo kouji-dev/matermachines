@@ -1,0 +1,7 @@
+.deal {
+  @apply flex items-center justify-center mx-2 py-2;
+}
+
+.dealText {
+  @apply font-bold ml-1;
+}

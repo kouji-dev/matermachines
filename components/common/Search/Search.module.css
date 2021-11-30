@@ -1,0 +1,11 @@
+.container {
+  @apply ml-16 flex flex-auto h-full w-auto space-x-4 bg-gray-100 rounded-lg px-4 items-center;
+}
+
+.input {
+  @apply bg-transparent flex-auto text-xs font-medium outline-none;
+}
+
+.searchInputContainer {
+  @apply flex flex-auto;
+}

@@ -1,0 +1,27 @@
+.root {
+  @apply absolute top-0 right-0 inline-flex items-center justify-center font-bold leading-none transform translate-x-1/2 -translate-y-1/2;
+}
+
+.default {
+  @apply bg-yellow-200;
+}
+
+.xs {
+  @apply px-0.5 py-0.5 text-xs;
+}
+
+.sm {
+  @apply px-1 py-0.5 text-sm;
+}
+
+.md {
+  @apply px-1 py-0.5 text-base;
+}
+
+.new {
+  @apply bg-blue-600 text-white;
+}
+
+.hot {
+  @apply bg-red-500 text-white;
+}
