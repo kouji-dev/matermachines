@@ -17,7 +17,7 @@ export const Deal: FC<Props> = ({ children, text, href, active }) => {
   });
 
   return (
-    <Link href={`deal/${href}`}>
+    <Link href={`/deal/${href}`}>
       <div className={rootCls}>
         {children}
         <span className={s.dealText}>{text}</span>
