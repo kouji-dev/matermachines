@@ -37,7 +37,7 @@ ProductPage.Layout = Layout;
 export const getStaticProps: GetStaticProps<Props, Params> = async (
   context: GetStaticPropsContext<Params>
 ) => {
-  const id = context.params?.id;
+  const id = context.params?.id as string;
 
   const header: Header = await api.getHeader();
   const categories: Category[] = await api.getAllCategories();
