@@ -1,9 +1,13 @@
 import { getAllCategories } from "./operations/category";
 import { getHeader } from "./operations/siteinfo";
-import { getFeaturedProducts } from "./operations/product";
-import { getAllProducts } from "./operations/product";
-import { getAllProductsPaths } from "./operations/product";
-import { getProduct } from "./operations/product";
+import {
+  getFeaturedProducts,
+  getProduct,
+  getAllProducts,
+  getAllProductsPaths,
+  getAllProductsByTag,
+} from "./operations/product";
+import { getAllTags } from "./operations/tag";
 
 const api = {
   getAllCategories,
@@ -12,6 +16,8 @@ const api = {
   getAllProducts,
   getAllProductsPaths,
   getProduct,
+  getAllTags,
+  getAllProductsByTag,
 };
 
 type API = typeof api;

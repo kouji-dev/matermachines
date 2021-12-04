@@ -5,7 +5,7 @@
 @tailwind utilities;
 
 .fit {
-  min-height: calc(100vh - 88px);
+  height: calc(100vh - 144px);
 }
 
 .loader {

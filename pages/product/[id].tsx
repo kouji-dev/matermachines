@@ -35,9 +35,9 @@ ProductPage.displayName = "ProductPage";
 ProductPage.Layout = Layout;
 
 export const getStaticProps: GetStaticProps<Props, Params> = async (
-  context: GetStaticPropsContext
+  context: GetStaticPropsContext<Params>
 ) => {
-  const id = context.params?.id as string;
+  const id = context.params?.id;
 
   const header: Header = await api.getHeader();
   const categories: Category[] = await api.getAllCategories();
@@ -67,7 +67,7 @@ export const getStaticPaths: GetStaticPaths<Params> = async () => {
 
   return {
     paths,
-    fallback: true,
+    fallback: false,
   };
 };
 

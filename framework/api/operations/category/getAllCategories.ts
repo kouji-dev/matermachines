@@ -1,6 +1,6 @@
 import { Category } from "@framework/types";
 import { FetcherError } from "@framework/utils";
-import { GET_ALL_CATEGORIES_QUERY } from "@framework/utils/queries/getAllCategories";
+import { GET_ALL_CATEGORIES_QUERY } from "@framework/utils/queries/category";
 import { GraphQLClient } from "@framework/api/graphql-client";
 
 export const getAllCategories: () => Promise<Category[]> = async () => {
