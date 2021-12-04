@@ -2,7 +2,7 @@
 module.exports = {
   reactStrictMode: true,
   images: {
-    domains: ["127.0.0.1"],
+    domains: [process.env.WOOCOMMERCE_IMAGE_DOMAIN],
   },
   env: {
     WOOCOMMERCE_GRAPHQL_API: process.env.WOOCOMMERCE_GRAPHQL_API,
