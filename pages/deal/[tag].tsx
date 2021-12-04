@@ -3,6 +3,7 @@ import api from "@framework/api";
 import { Category, Header, Product, Tag } from "@framework/types";
 import { PageComponent, PageProps } from "@utils/common-types";
 import { GetStaticPaths, GetStaticProps, GetStaticPropsContext } from "next";
+import { useRouter } from "next/router";
 import { ParsedUrlQuery } from "querystring";
 
 interface Props {
@@ -14,7 +15,11 @@ interface Params extends ParsedUrlQuery {
 }
 
 const DealPage: PageComponent<Props> = ({ pageProps: { products } }) => {
-  console.log(products);
+  const router = useRouter();
+
+  if (router.isFallback) {
+    return <div>Loading</div>;
+  }
 
   if (!products?.length) {
     return (
@@ -49,6 +54,7 @@ export const getStaticProps: GetStaticProps<Props, Params> = async (
         header,
         products,
       },
+      revalidate: 10,
     },
   };
 };
