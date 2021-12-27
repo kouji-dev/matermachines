@@ -1,8 +1,11 @@
 import gql from "graphql-tag";
 
-export const GET_ALL_PRODUCTS_QUERY = gql`
-  query allProducts {
-    products(first: 100, where: { status: "publish" }) {
+export const GET_ALL_RELATED_PRODUCTS_QUERY = gql`
+  query allProductsByTag($categoriesNames: [String]) {
+    products(
+      first: 4
+      where: { status: "publish", categoryIn: $categoriesNames }
+    ) {
       nodes {
         totalSales
         name

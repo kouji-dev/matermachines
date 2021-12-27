@@ -22,3 +22,28 @@
 .addToCart {
   @apply flex justify-center items-center mt-5;
 }
+
+.detailWrapper {
+  @apply relative grid md:grid-cols-2 w-full;
+}
+
+.slider {
+  @apply px-5;
+}
+
+.detail {
+  @apply p-5;
+}
+
+.title {
+  @apply align-middle;
+}
+
+.title .heading,
+.title .link {
+  @apply align-middle;
+}
+
+.heading {
+  @apply inline-block text-3xl font-bold uppercase;
+}

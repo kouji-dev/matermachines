@@ -6,6 +6,7 @@ import {
   getAllProducts,
   getAllProductsPaths,
   getAllProductsByTag,
+  getRelatedProducts,
 } from "./operations/product";
 import { getAllTags } from "./operations/tag";
 
@@ -18,6 +19,7 @@ const api = {
   getProduct,
   getAllTags,
   getAllProductsByTag,
+  getRelatedProducts,
 };
 
 type API = typeof api;

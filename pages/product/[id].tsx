@@ -1,4 +1,4 @@
-import { Layout, Product } from "@components/common";
+import { Layout } from "@components/common";
 import api from "@framework/api";
 import { Category, Header, Product as ProductType } from "@framework/types";
 import { PageComponent, PageProps } from "@utils/common-types";
@@ -6,17 +6,19 @@ import { GetStaticPaths, GetStaticProps, GetStaticPropsContext } from "next";
 import { useRouter } from "next/router";
 import { ParsedUrlQuery } from "querystring";
 import s from "@assets/Product.module.css";
+import { ProductDetail } from "@components/common/Products";
 
 interface Props {
   pageProps: PageProps;
   product: ProductType;
+  relatedProducts: ProductType[];
 }
 
 interface Params extends ParsedUrlQuery {
   id: string;
 }
 
-const ProductPage: PageComponent<Props> = ({ product }) => {
+const ProductPage: PageComponent<Props> = ({ product, relatedProducts }) => {
   const router = useRouter();
 
   if (router.isFallback) {
@@ -25,7 +27,7 @@ const ProductPage: PageComponent<Props> = ({ product }) => {
 
   return (
     <div className={s.root}>
-      <Product product={product} />
+      <ProductDetail product={product} relatedProducts={relatedProducts} />
     </div>
   );
 };
@@ -42,6 +44,12 @@ export const getStaticProps: GetStaticProps<Props, Params> = async (
   const header: Header = await api.getHeader();
   const categories: Category[] = await api.getAllCategories();
   const product: ProductType = await api.getProduct(id);
+  const relatedCategories = product?.productCategories?.nodes?.map(
+    (category) => category?.name as string
+  ) as string[];
+  const relatedProducts: ProductType[] = await api.getRelatedProducts(
+    relatedCategories
+  );
   //TODO: recommended products
   //   const products: Product[] = await api.getAllProducts();
 
@@ -53,8 +61,9 @@ export const getStaticProps: GetStaticProps<Props, Params> = async (
         products: [],
       },
       product,
+      relatedProducts,
     },
-    revalidate: 1,
+    revalidate: true,
   };
 };
 

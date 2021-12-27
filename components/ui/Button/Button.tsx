@@ -9,16 +9,19 @@ import mergeRefs from "react-merge-refs";
 import s from "./Button.module.css";
 import { LoadingDots } from "@components/ui";
 
+export type Variant = "flat" | "slim" | "ghost" | "naked" | "default";
+
 export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   href?: string;
   className?: string;
-  variant?: "flat" | "slim" | "ghost" | "naked";
+  variant?: Variant;
   active?: boolean;
   type?: "submit" | "reset" | "button";
   Component?: string | JSXElementConstructor<any>;
   width?: string | number;
   loading?: boolean;
   disabled?: boolean;
+  block?: boolean;
 }
 
 const Button: React.FC<ButtonProps> = forwardRef<any, ButtonProps>(
@@ -31,6 +34,7 @@ const Button: React.FC<ButtonProps> = forwardRef<any, ButtonProps>(
       width,
       loading = false,
       disabled = false,
+      block = false,
       style = {},
       Component = "button",
       ...rest
@@ -43,8 +47,10 @@ const Button: React.FC<ButtonProps> = forwardRef<any, ButtonProps>(
         [s.ghost]: variant === "ghost",
         [s.slim]: variant === "slim",
         [s.naked]: variant === "naked",
+        [s.default]: variant === "default",
         [s.loading]: loading,
         [s.disabled]: disabled,
+        [s.block]: block,
       },
       className
     );

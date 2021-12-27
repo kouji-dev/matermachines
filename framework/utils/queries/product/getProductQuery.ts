@@ -8,14 +8,31 @@ export const GET_PRODUCT_QUERY = gql`
       id
       description
       databaseId
+      reviewCount
+      averageRating
+      productCategories {
+        nodes {
+          name
+        }
+      }
       productTags {
         nodes {
           name
         }
       }
       image {
+        id
         altText
-        sourceUrl
+        sourceUrl(size: SHOP_SINGLE)
+        thumbnailSourceUrl: sourceUrl(size: SHOP_CATALOG)
+      }
+      galleryImages {
+        nodes {
+          sourceUrl(size: SHOP_SINGLE)
+          thumbnailSourceUrl: sourceUrl(size: SHOP_CATALOG)
+          id
+          altText
+        }
       }
       ... on SimpleProduct {
         id

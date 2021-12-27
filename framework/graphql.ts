@@ -5022,6 +5022,8 @@ export type MediaItem = ContentNode & DatabaseIdentifier & HierarchicalContentNo
   slug?: Maybe<Scalars['String']>;
   /** Url of the mediaItem */
   sourceUrl?: Maybe<Scalars['String']>;
+
+  thumbnailSourceUrl?: Maybe<Scalars['String']>;
   /** The srcset attribute specifies the URL of the image to use in different situations. It is a comma separated string of urls and their widths. */
   srcSet?: Maybe<Scalars['String']>;
   /** The current status of the object */

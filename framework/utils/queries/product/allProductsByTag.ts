@@ -16,7 +16,7 @@ export const GET_ALL_PRODUCTS_BY_TAG_QUERY = gql`
         }
         image {
           altText
-          sourceUrl
+          sourceUrl(size: SHOP_CATALOG)
         }
         ... on SimpleProduct {
           id

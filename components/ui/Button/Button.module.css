@@ -27,6 +27,14 @@
   @apply py-2 transform-none normal-case;
 }
 
+.default {
+  @apply py-2 transform-none normal-case text-white bg-black;
+}
+
+.default:hover {
+  @apply text-black border-none shadow-md;
+}
+
 .ghost {
   @apply border border-accent-2 bg-accent-0 text-accent-9 text-sm;
 }
@@ -53,5 +61,6 @@
   -webkit-backface-visibility: hidden;
 }
 
-.progress {
+.block {
+  @apply w-full;
 }

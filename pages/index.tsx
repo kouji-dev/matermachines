@@ -26,6 +26,7 @@ export const getStaticProps: GetStaticProps<Props> = async (
         products,
       },
     },
+    revalidate: true,
   };
 };
 
