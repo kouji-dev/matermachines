@@ -11,7 +11,7 @@ interface Props {
 
 const Logo: FC<Props> = ({ className = "", header }) => {
   return (
-    <Link href="/">
+    <Link href="/" className={className}>
       <Image
         alt={header?.siteTitle || ""}
         src={logo}

@@ -1,16 +1,19 @@
 import { Layout } from "@components/common";
-import { Products } from "@components/common/Products";
+import {Products, ProductsLazy} from "@components/common/Products";
 import api from "@framework/api";
 import { Category, Header, Product } from "@framework/types";
 import { PageComponent, PageProps } from "@utils/common-types";
 import { GetStaticProps, GetStaticPropsContext } from "next";
+import {useState} from "react";
 
 interface Props {
   pageProps: PageProps;
 }
 
 const ProductsPage: PageComponent<Props> = ({ pageProps: { products } }) => {
-  return <Products products={products || []} />;
+  const [pagination, setPagination] = useState({first: 0, last: 10})
+
+  return <ProductsLazy {...pagination}/>;
 };
 
 ProductsPage.Layout = Layout;

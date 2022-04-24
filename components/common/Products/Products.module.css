@@ -1,6 +1,5 @@
 .products {
-  @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6
-  p-10;
+  @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6;
 }
 
 .product {
@@ -16,11 +15,11 @@
 }
 
 .description p {
-  @apply text-sm truncate;
+  @apply text-sm line-clamp-4;
 }
 
 .addToCart {
-  @apply flex justify-center items-center mt-5;
+  @apply flex justify-center items-center;
 }
 
 .detailWrapper {
@@ -33,17 +32,4 @@
 
 .detail {
   @apply p-5;
-}
-
-.title {
-  @apply align-middle;
-}
-
-.title .heading,
-.title .link {
-  @apply align-middle;
-}
-
-.heading {
-  @apply inline-block text-3xl font-bold uppercase;
 }

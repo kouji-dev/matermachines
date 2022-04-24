@@ -1,4 +1,4 @@
-import { Category, Header, Product } from "@framework/types";
+import {Category, CategoryProducts, Header, Product} from "@framework/types";
 import { FC, ReactNode } from "react";
 
 export interface PageProps {

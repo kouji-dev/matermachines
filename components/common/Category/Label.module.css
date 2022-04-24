@@ -1,0 +1,7 @@
+.container {
+    @apply align-middle;
+}
+
+.label {
+    @apply inline-block text-3xl font-bold;
+}

@@ -8,8 +8,8 @@ interface CartIconProps {}
 export const CartIcon: FC<CartIconProps> = () => {
   const { cart } = useContext(AppContext);
   return (
-    <Link href="cart">
-      <span className="relative inline-block">
+    <Link href="/cart">
+      <span className="relative inline-block ml-2">
         <ShoppingBagIcon className="h-6 w-6 transform hover:scale-110" />
         <Badge text={cart?.contents?.itemCount} />
       </span>

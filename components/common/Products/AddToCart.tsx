@@ -1,14 +1,17 @@
 import { Button } from "@components/ui";
 import { Variant } from "@components/ui/Button";
 import { useAddToCard } from "@framework/api/endpoints/cart/useAddToCart";
-import { Product } from "@framework/types";
+
+import {Maybe} from "@framework/graphql";
 import { AddToCartData } from "@framework/utils/mutations/addToCartMutation";
 import { FC, useCallback, useContext } from "react";
 import { AppContext } from "../AppContext";
 import s from "./Products.module.css";
+import {Product} from "@framework/types";
+
 
 interface Props {
-  product?: Product;
+  product?: Maybe<Product>;
   block?: boolean;
   variant?: Variant;
 }

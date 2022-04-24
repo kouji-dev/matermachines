@@ -7,16 +7,12 @@ import { FC, Fragment } from "react";
 import s from "./Search.module.css";
 
 interface Props {
-  categories: Category[] | null;
+
 }
 
-export const Search: FC<Props> = ({ categories }) => {
+export const Search: FC<Props> = () => {
   return (
     <div id="search" className={s.container}>
-      <div className="flex items-center font-bold text-sm uppercase">
-        <CategoryUI categories={categories} />
-      </div>
-      <hr className="h-3/6 w-px bg-gray-500" />
       <div className={s.searchInputContainer}>
         <input
           className={s.input}

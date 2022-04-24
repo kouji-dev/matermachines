@@ -1,11 +1,9 @@
 import { Layout } from "@components/common";
 import api from "@framework/api";
-import { Category, Header, Product } from "@framework/types";
+import {Category, Header} from "@framework/types";
 import { PageComponent, PageProps } from "@utils/common-types";
 import { GetStaticProps, GetStaticPropsContext } from "next";
-import s from "@assets/Home.module.css";
-import { Products } from "@components/common/Products";
-import { Link } from "@components/ui";
+import {ProductsByCategory} from "@components/common/Products";
 
 interface Props {
   pageProps: PageProps;
@@ -15,31 +13,25 @@ export const getStaticProps: GetStaticProps<Props> = async (
   context: GetStaticPropsContext
 ) => {
   const header: Header = await api.getHeader();
-  const categories: Category[] = await api.getAllCategories();
-  const products: Product[] = await api.getFeaturedProducts();
+  const categories: Category[] = await api.getGroupedProductsByCategory();
 
   return {
     props: {
       pageProps: {
         header,
-        categories,
-        products,
+        categories: categories || [],
       },
     },
     revalidate: true,
   };
 };
 
-const Home: PageComponent<Props> = ({ pageProps: { products } }) => {
+const Home: PageComponent<Props> = ({ pageProps: { categories } }) => {
   return (
-    <div className={s.root}>
-      <div className={s.title}>
-        <h2 className={s.heading}>Featured Products</h2>
-        <Link href="product">
-          <span className={s.link}>See All</span>
-        </Link>
-      </div>
-      <Products products={products || []} />
+    <div>
+      {
+        categories?.map(category => <ProductsByCategory key={category.name} label={category.name} slug={category.slug} products={category.products?.nodes || []}/>)
+      }
     </div>
   );
 };

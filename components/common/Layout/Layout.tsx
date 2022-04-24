@@ -13,7 +13,7 @@ export const Layout: FC<Props> = ({ children, pageProps }) => {
   return (
     <div className={cn(s.root)}>
       <Navbar categories={pageProps?.categories} header={pageProps?.header} />
-      <main className="fit">{children}</main>
+      <main className={s.body}>{children}</main>
     </div>
   );
 };

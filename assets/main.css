@@ -1,12 +1,6 @@
 @tailwind base;
-
 @tailwind components;
-
 @tailwind utilities;
-
-.fit {
-  height: calc(100vh - 144px);
-}
 
 .loader {
   border-top-color: #3498db;

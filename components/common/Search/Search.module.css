@@ -1,5 +1,5 @@
 .container {
-  @apply ml-16 flex flex-auto h-full w-auto space-x-4 bg-gray-100 rounded-lg px-4 items-center;
+  @apply flex flex-auto h-full max-w-xl space-x-4 bg-gray-100 rounded-lg px-4 items-center;
 }
 
 .input {
@@ -7,5 +7,5 @@
 }
 
 .searchInputContainer {
-  @apply flex flex-auto;
+  @apply flex flex-auto py-2;
 }

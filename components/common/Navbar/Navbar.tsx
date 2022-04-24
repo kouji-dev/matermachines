@@ -1,29 +1,50 @@
 import { Badge, Container, Logo, Link } from "@components/ui";
 import { HeartIcon } from "@heroicons/react/outline";
 import { PageProps } from "@utils/common-types";
-import { FC } from "react";
+import {FC, useLayoutEffect, useState} from "react";
 import { Balance, CartIcon } from "../Cart";
 import { Search } from "../Search";
 import s from "./Navbar.module.css";
 import NavbarRoot from "./NavbarRoot";
 import { SubNav } from "./Subnav";
+import {Fade} from "@components/ui/Fade";
 
 interface Props extends PageProps {}
 
+const useIsMobile = () => {
+  const [isMobile, setIsMobile] = useState(true);
+
+  useLayoutEffect(() => {
+    // if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Mobile|Opera Mini/i.test(navigator.userAgent) ) {
+    //   setIsMobile(true);
+    // }
+  }, [])
+
+  return isMobile;
+}
+
 export const Navbar: FC<Props> = ({ categories = [], header }) => {
+  const isMobile = useIsMobile();
+  console.log(isMobile);
+
   return (
     <NavbarRoot>
       <Container>
-        <div className={s.navContainer}>
-          <div className="flex items-center flex-auto">
-            <Logo header={header} />
-            <Search categories={categories} />
+        <Fade>
+          <div className="py-2 bg-blue-900 text-center text-white font-black">
+            Special offer for any first Buy
           </div>
+        </Fade>
+        <div className={s.navContainer}>
+          <Logo header={header} className="mr-2" />
+          <Search />
           <div className={s.toolbar}>
-            <WishlistIcon count={3} />
+            {/*<WishlistIcon count={3} />*/}
             <CartIcon />
-            <Balance />
-            <div className="w-10 h-10 bg-purple-300 rounded-full hover:ring-2 hover:shadow-md"></div>
+            {!isMobile && <Balance /> }
+            {/*<div className="w-10 h-10 bg-purple-300 rounded-full hover:ring-2 hover:shadow-md">*/}
+            {/*  U*/}
+            {/*</div>*/}
           </div>
         </div>
         <SubNav />
@@ -38,7 +59,7 @@ interface WishlistIconProps {
 
 const WishlistIcon: FC<WishlistIconProps> = ({ count }) => {
   return (
-    <Link href="wishlist">
+    <Link href="/wishlist">
       <span className="relative inline-block">
         <HeartIcon className="h-6 w-6 transform hover:scale-110" />
         <Badge text={count} />

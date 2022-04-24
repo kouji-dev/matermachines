@@ -1,10 +1,11 @@
-import { Product as ProductType } from "@framework/types";
+import {Maybe} from "@framework/graphql";
+import { Product as ProductType} from "@framework/types";
 import { FC } from "react";
 import { Product } from "./Product";
 import s from "./Products.module.css";
 
 interface Props {
-  products: ProductType[];
+  products?: Maybe<ProductType>[];
 }
 
 export const Products: FC<Props> = ({ products }) => {

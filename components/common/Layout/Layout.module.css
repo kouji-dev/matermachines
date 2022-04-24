@@ -1,4 +1,7 @@
 .root {
-  @apply h-full bg-primary mx-auto transition-colors duration-150;
-  max-width: 2460px;
+  @apply bg-primary mx-auto transition-colors duration-150 relative;
+}
+
+.body {
+  @apply px-4 py-6 sm:px-16 sm:py-10;
 }
