@@ -12,12 +12,12 @@ import {Fade} from "@components/ui/Fade";
 interface Props extends PageProps {}
 
 const useIsMobile = () => {
-  const [isMobile, setIsMobile] = useState(true);
+  const [isMobile, setIsMobile] = useState(false);
 
   useLayoutEffect(() => {
-    // if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Mobile|Opera Mini/i.test(navigator.userAgent) ) {
-    //   setIsMobile(true);
-    // }
+    if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Mobile|Opera Mini/i.test(navigator.userAgent) ) {
+      setIsMobile(true);
+    }
   }, [])
 
   return isMobile;
@@ -25,7 +25,6 @@ const useIsMobile = () => {
 
 export const Navbar: FC<Props> = ({ categories = [], header }) => {
   const isMobile = useIsMobile();
-  console.log(isMobile);
 
   return (
     <NavbarRoot>
