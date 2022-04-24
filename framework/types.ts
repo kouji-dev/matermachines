@@ -6,7 +6,7 @@ import {
   SimpleProduct,
   VariableProduct,
   Tag as TagType, RootQueryToProductCategoryConnection,
-    Product as ProductType
+  Product as ProductType, Maybe, Scalars
 } from "./graphql";
 
 export interface Category extends ProductCategory {
@@ -23,6 +23,6 @@ export interface Cart extends CartType {}
 
 export interface FeaturedProducts extends ProductCategoryToProductConnection {}
 
-export type Product = (ProductType & SimpleProduct & VariableProduct) | ProductType;
+export type Product = (SimpleProduct | VariableProduct | ProductType) & {price?: Maybe<Scalars['String']>};
 
 export interface Tag extends TagType {}
