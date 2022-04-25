@@ -3,14 +3,40 @@ import { Category } from "@framework/types";
 import { Popover, Transition } from "@headlessui/react";
 import { SearchIcon } from "@heroicons/react/outline";
 import { ChevronDownIcon } from "@heroicons/react/solid";
-import { FC, Fragment } from "react";
+import {FC, Fragment, SetStateAction, useEffect, useRef, useState} from "react";
 import s from "./Search.module.css";
+import {useRouter} from "next/router";
+import {set} from "js-cookie";
 
 interface Props {
 
 }
 
-export const Search: FC<Props> = () => {
+export const SearchBar: FC<Props> = () => {
+  const router = useRouter();
+  const [query, setQuery] = useState("");
+
+  const onChange = (e: any) => {
+    setQuery(e.target.value);
+  }
+
+  const onSearch = async () => {
+    const {query: {q}} = router;
+    if(query && q != query) {
+      try {
+        await router.push(`/search?q=${query}`, `/search?q=${query}`, {shallow: true});
+      } catch (e) {
+        console.log('cant navigate')
+      }
+    }
+  }
+
+  useEffect(() => {
+    console.log(`path ${router.query.q}`)
+    if(router.query?.q)
+    setQuery(router.query?.q as string);
+  }, [setQuery, router.query])
+
   return (
     <div id="search" className={s.container}>
       <div className={s.searchInputContainer}>
@@ -18,8 +44,10 @@ export const Search: FC<Props> = () => {
           className={s.input}
           placeholder="Search for products..."
           type="text"
+          onChange={onChange}
+          value={query}
         />
-        <SearchIcon className="h-5 w-5 text-gray-500 hover:text-gray-600" />
+        <SearchIcon className="h-5 w-5 text-gray-500 hover:text-gray-600" onClick={onSearch}/>
       </div>
     </div>
   );

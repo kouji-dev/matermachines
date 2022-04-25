@@ -5,3 +5,4 @@ export { getProduct } from "./getProduct";
 export { getAllProductsByTag } from "./getAllProductsByTag";
 export { getRelatedProducts } from "./getRelatedProducts";
 export { getGroupedProductsByCategory } from "./getGroupedProductsByCategory";
+export { searchProducts } from "./searchProducts";

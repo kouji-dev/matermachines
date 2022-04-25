@@ -11,9 +11,7 @@ interface Props {
 }
 
 const ProductsPage: PageComponent<Props> = ({ pageProps: { products } }) => {
-  const [pagination, setPagination] = useState({first: 0, last: 10})
-
-  return <ProductsLazy {...pagination}/>;
+  return <Products products={products as any}/>;
 };
 
 ProductsPage.Layout = Layout;

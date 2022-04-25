@@ -1,9 +1,9 @@
 import { Badge, Container, Logo, Link } from "@components/ui";
 import { HeartIcon } from "@heroicons/react/outline";
 import { PageProps } from "@utils/common-types";
-import {FC, useLayoutEffect, useState} from "react";
+import {FC, useEffect, useLayoutEffect, useState} from "react";
 import { Balance, CartIcon } from "../Cart";
-import { Search } from "../Search";
+import { SearchBar } from "../Search";
 import s from "./Navbar.module.css";
 import NavbarRoot from "./NavbarRoot";
 import { SubNav } from "./Subnav";
@@ -14,7 +14,7 @@ interface Props extends PageProps {}
 const useIsMobile = () => {
   const [isMobile, setIsMobile] = useState(false);
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Mobile|Opera Mini/i.test(navigator.userAgent) ) {
       setIsMobile(true);
     }
@@ -36,7 +36,7 @@ export const Navbar: FC<Props> = ({ categories = [], header }) => {
         </Fade>
         <div className={s.navContainer}>
           <Logo header={header} className="mr-2" />
-          <Search />
+          <SearchBar />
           <div className={s.toolbar}>
             {/*<WishlistIcon count={3} />*/}
             <CartIcon />
