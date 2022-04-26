@@ -3,10 +3,10 @@ import { Category } from "@framework/types";
 import { Popover, Transition } from "@headlessui/react";
 import { SearchIcon } from "@heroicons/react/outline";
 import { ChevronDownIcon } from "@heroicons/react/solid";
-import {FC, Fragment, SetStateAction, useEffect, useRef, useState} from "react";
+import {FC, Fragment, KeyboardEventHandler, useEffect, useState} from "react";
 import s from "./Search.module.css";
 import {useRouter} from "next/router";
-import {set} from "js-cookie";
+import cn from "classnames";
 
 interface Props {
 
@@ -15,6 +15,7 @@ interface Props {
 export const SearchBar: FC<Props> = () => {
   const router = useRouter();
   const [query, setQuery] = useState("");
+  const [focused, setFocused] = useState(false);
 
   const onChange = (e: any) => {
     setQuery(e.target.value);
@@ -37,17 +38,28 @@ export const SearchBar: FC<Props> = () => {
     setQuery(router.query?.q as string);
   }, [setQuery, router.query])
 
+  //throttle
+  const onEnter: KeyboardEventHandler<HTMLInputElement> = async (e) => {
+    if(e.code === 'Enter') await onSearch();
+  }
+
   return (
-    <div id="search" className={s.container}>
+    <div className={cn(s.container, {"ring-4 ring-blue-900": focused})}>
       <div className={s.searchInputContainer}>
         <input
           className={s.input}
           placeholder="Search for products..."
           type="text"
           onChange={onChange}
+          onFocus={() => setFocused(true)}
+          onBlur={() => setFocused(false)}
+          onKeyDown={onEnter}
+          onKeyPress={onEnter}
           value={query}
         />
-        <SearchIcon className="h-5 w-5 text-gray-500 hover:text-gray-600" onClick={onSearch}/>
+        <div className="bg-white h-full">
+          <SearchIcon className={cn("h-5 w-5 cursor-pointer text-gray-400 transition ease-in-out delay-200", {"scale-125 text-gray-600" : focused})} onClick={onSearch}/>
+        </div>
       </div>
     </div>
   );

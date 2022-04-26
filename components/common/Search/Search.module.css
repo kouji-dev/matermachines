@@ -1,11 +1,15 @@
 .container {
-  @apply flex flex-auto h-full max-w-xl space-x-4 bg-gray-100 rounded-lg px-4 items-center;
+  @apply flex flex-auto h-full max-w-xl space-x-4 bg-gray-100 rounded-lg items-center shadow;
 }
 
 .input {
-  @apply bg-transparent flex-auto text-xs font-medium outline-none;
+  @apply bg-transparent flex-auto text-xs font-bold outline-none;
 }
 
 .searchInputContainer {
-  @apply flex flex-auto py-2;
+  @apply flex flex-auto;
+}
+
+.searchInputContainer > * {
+  @apply px-4 py-2 rounded-r-lg;
 }
